@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Zakończ zamówienia</title>
+</head>
+<body>
+<h1>Zaznacz zakończone zamówienia</h1>
+<form action="/wypozyczenia/complete" method="post">
+    <ul>
+
+        <th:block th:each="wypozyczenie : ${wypozyczenia}"> <!--Makes the list -->
+            <li>
+                <label>
+
+                    <input type="checkbox" name="rentals[]" th:value="${wypozyczenie.id}" th:id="'rental_' + ${wypozyczenie.id}" onclick="updateHiddenFields()"> <!--returns a [] of ids -->
+
+                    <span>ID: <span th:if="${wypozyczenie.id != null}" th:text="${wypozyczenie.id}"></span></span>,
+                    <span>Film: <span th:if="${wypozyczenie.film != null}" th:text="${wypozyczenie.film.nazwa}"></span></span>,
+                    <span>Klient: <span th:if="${wypozyczenie.klient != null}" th:text="${wypozyczenie.klient.imie + ' ' + wypozyczenie.klient.nazwisko}"></span></span>,
+                    <span>Data Wypozyczenia: <span th:if="${wypozyczenie.data_wypozyczenia != null}" th:text="${wypozyczenie.data_wypozyczenia}"></span></span>,
+                    <span>Data Zwrotu: <span th:if="${wypozyczenie.data_zwrotu != null}" th:text="${wypozyczenie.data_zwrotu}"></span></span>
+                </label>
+            </li>
+        </th:block>
+    </ul>
+    <button type="submit">Mark Selected as Complete</button>
+
+    <input type="hidden" name="selectedRentals" id="selectedRentals">
+</form>
+
+<script>
+    function updateHiddenFields() {
+        var selectedRentals = [];
+
+        var checkboxes = document.querySelectorAll('input[type=checkbox][name="rentals[]"]:checked');//gets all values with checkboxes checked
+
+        checkboxes.forEach(function(checkbox) {
+            selectedRentals.push(checkbox.value); //gets the value from the checkboxes and adds them to the []
+        });
+
+        document.getElementById('selectedRentals').value = selectedRentals.join(','); //returns a [] filled with the ids of the positions checked, it is later compared back to the original values
+    }
+</script>
+</body>
+</html>

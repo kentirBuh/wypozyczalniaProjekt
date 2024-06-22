@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodaj film</title>
+</head>
+<body>
+<h1>Dodaj nowy film</h1>
+<form action="#" th:action="@{/filmy/add}" th:object="${film}" method="post">
+    <label for="title">Tytuł:</label>
+    <input type="text" id="title" th:field="*{nazwa}" required>
+    <br>
+    <label for="cathegory">Kategoria:</label>
+    <input type="text" id="cathegory" th:field="*{kategoria}" required>
+    <br>
+    <label for="studio">Studio:</label>
+    <input type="text" id="studio" th:field="*{studio}" required>
+    <br>
+    <label for="director">Reżyser:</label>
+    <input type="text" id="director" th:field="*{rezyser}" required>
+    <br>
+    <button type="submit">Add Film</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodaj Zamowienie</title>
+</head>
+<body>
+<h1>Stwórz nowe zamówienie</h1>
+<form action="#" th:action="@{/wypozyczenia/add}" th:object="${wypozyczenie}" method="post">
+    <label for="film">Film:</label>
+    <select id="film" th:field="*{film}">
+        <option th:each="film : ${film}" th:value="${film.id}" th:text="${film.id + ' - ' + film.nazwa}">Film Title</option>
+    </select>
+    <br/>
+
+    <label for="klient">Klient:</label>
+    <select id="klient" th:field="*{klient}">
+        <option th:each="klient : ${klient}" th:value="${klient.id}" th:text="${klient.imie} + ' ' + ${klient.nazwisko} + ' - ' + ${klient.telefon}">Klient Info</option>
+    </select>
+    <br/>
+
+    <label for="data_zwrotu">Data Zwrotu:</label>
+    <input type="date" id="data_zwrotu" th:field="*{data_zwrotu}"/>
+    <br/>
+
+    <br>
+    <button type="submit">Dodaj Zamowienie</button>
+</form>
+
+</body>
+</html>

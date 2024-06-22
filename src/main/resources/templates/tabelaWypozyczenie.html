@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wypożyczenia</title>
+</head>
+<body>
+<h1>Lista wypożyczeń</h1>
+<table border="solid">
+    <thead>
+    <tr>
+        <th>Id zamówienia</th>
+        <th>Id klienta</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Numer telefonu</th>
+        <th>Id filmu</th>
+        <th>Nazwa filmu</th>
+        <th>Data wypożyczenia</th>
+        <th>Data zwrotu</th>
+        <th>Status</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="rental : ${rentals}">
+        <td th:text="${rental.id}"></td>
+        <td th:text="${rental.klient.id}"></td>
+        <td th:text="${rental.klient.imie}"></td>
+        <td th:text="${rental.klient.nazwisko}"></td>
+        <td th:text="${rental.klient.telefon}"></td>
+        <td th:text="${rental.film.id}"></td>
+        <td th:text="${rental.film.nazwa}"></td>
+        <td th:text="${rental.data_wypozyczenia}"></td>
+        <td th:text="${rental.data_zwrotu}"></td>
+        <td th:text="${rental.status}"></td>
+
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/wypozyczenia/add}">Dodaj nowe zamówienie</a>
+</body>
+</html>

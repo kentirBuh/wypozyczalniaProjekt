@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyszukaj klienta</title>
+</head>
+<body>
+<h1>Wyszukaj klienta</h1>
+<form id="imieForm" method="get" th:action="@{/klient/szukaj/}">
+    <label for="imie">Imię: </label>
+    <input type="text" id="imie" name="imie" th:object="${klient}" required>
+    <button type="submit">Szukaj</button>
+</form>
+<br>
+<form id="nazwiskoForm" method="get" th:action="@{/klient/nazwisko/}">
+    <label for="nazwisko">Nazwisko: </label>
+    <input type="text" id="nazwisko" name="nazwisko" th:object="${klient}" required>
+    <button type="submit">Szukaj</button>
+</form>
+<br>
+<form id="telefonForm" method="get" th:action="@{/klient/telefon/}">
+    <label for="telefon">Telefon: </label>
+    <input type="text" id="telefon" name="telefon" th:object="${klient}" required>
+    <button type="submit">Szukaj</button>
+</form>
+<script>
+    document.getElementById('imieForm').onsubmit = function () {
+        const imie = document.getElementById('imie').value;
+        this.action = '/klient/imie/' + imie;
+    };
+
+    document.getElementById('nazwiskoForm').onsubmit = function () {
+        const nazwisko = document.getElementById('nazwisko').value;
+        this.action = '/klient/nazwisko/' + nazwisko;
+    };
+
+    document.getElementById('telefonForm').onsubmit = function () {
+        const telefon = document.getElementById('telefon').value;
+        this.action = '/klient/telefon/' + telefon;
+    };
+</script>
+</body>
+</html>

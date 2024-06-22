@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Wyszukaj Film</title>
+</head>
+<body>
+<h1>Wyszukaj Film</h1>
+<form id="searchForm" method="get" th:action="@{/filmy/szukaj/}">
+    <label for="nazwa">Tytuł: </label>
+    <input type="text" id="nazwa" name="nazwa" th:object="${film}" required>
+    <button type="submit">Szukaj</button>
+</form>
+<br>
+<form id="cathegoryForm" method="get" th:action="@{/filmy/cathegory/}">
+    <label for="kategoria">Kategoria: </label>
+    <input type="text" id="kategoria" name="kategoria" th:object="${film}" required>
+    <button type="submit">Szukaj</button>
+</form>
+<br>
+<form id="studioForm" method="get" th:action="@{/filmy/studio/}">
+    <label for="kategoria">Studio: </label>
+    <input type="text" id="studio" name="studio" th:object="${film}" required>
+    <button type="submit">Szukaj</button>
+</form>
+<br>
+<form id="rezyserForm" method="get" th:action="@{/filmy/rezyser/}">
+    <label for="rezyser">Reżyser: </label>
+    <input type="text" id="rezyser" name="rezyser" th:object="${film}" required>
+    <button type="submit">Szukaj</button>
+</form>
+<br>
+<form id="availabilityForm" method="post" th:action="@{/filmy/dostepnosc}">
+    <label>Wybierz dostępność:  </label>
+    <input type="radio" id="dostepne" name="dostepnosc" value="dostepne" required>
+    <label for="dostepne">Dostępne</label>
+    <input type="radio" id="niedostepne" name="dostepnosc" value="niedostepne">
+    <label for="niedostepne">   Niedostępne</label><br>
+    <button type="submit">Szukaj</button>
+</form>
+
+<script type="text/javascript">
+    document.getElementById('searchForm').onsubmit = function() {
+        const nazwa = document.getElementById('nazwa').value;
+        this.action = '/filmy/szukaj/' + nazwa;
+    };
+
+    document.getElementById('cathegoryForm').onsubmit = function() {
+        const kategoria = document.getElementById('kategoria').value;
+        this.action = '/filmy/cathegory/' + kategoria;
+    };
+
+    document.getElementById('studioForm').onsubmit = function() {
+        const studio = document.getElementById('studio').value;
+        this.action = '/filmy/studio/' + studio;
+    };
+    document.getElementById('rezyserForm').onsubmit = function() {
+        const rezyser = document.getElementById('rezyser').value;
+        this.action = '/filmy/rezyser/' + rezyser;
+    };
+    document.getElementById('dostepneForm').onsubmit = function() {
+        const dostepne = document.getElementById('dostepne1').value;
+        if (dostepne == "true")
+            this.action = '/filmy/dostepne/';
+        else
+            this.action = '/filmy/niedostepne'
+    };
+
+</script>
+</body>
+</html>
